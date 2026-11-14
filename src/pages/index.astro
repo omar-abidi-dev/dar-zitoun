@@ -1,0 +1,318 @@
+---
+import Base from '../layouts/Base.astro';
+import Img from '../components/Img.astro';
+
+const dishes = [
+  { img: 'plat-pastilla.jpg', name: 'Pastilla au pigeon', desc: 'Feuilles croustillantes, amandes grillées, cannelle et sucre glace.', price: 140, alt: 'Pastilla au pigeon saupoudrée de sucre glace et de cannelle' },
+  { img: 'plat-tajine.jpg', name: "Tajine d'agneau aux pruneaux", desc: 'Mijoté cinq heures, sésame grillé, amandes frites.', price: 160, alt: "Tajine d'agneau aux pruneaux et sésame dans un plat en terre" },
+  { img: 'plat-couscous.jpg', name: 'Couscous du vendredi', desc: 'Sept légumes, bouillon de la veille, smen de la maison.', note: 'Le vendredi uniquement', price: 130, alt: 'Grand plat de couscous aux sept légumes' },
+  { img: 'plat-rfissa.jpg', name: 'Rfissa de Lalla Fatna', desc: 'Poulet beldi, msemen effiloché, lentilles et fenugrec.', price: 150, alt: 'Rfissa au poulet sur msemen effiloché' },
+  { img: 'plat-zaalouk.jpg', name: 'Zaalouk & taktouka', desc: 'Aubergines fumées, poivrons grillés, pain chaud du four.', price: 60, alt: 'Zaalouk et taktouka servis avec du pain' },
+  { img: 'plat-seffa.jpg', name: "Seffa au lait d'amande", desc: "Vermicelles vapeur, cannelle, amandes, une pointe de fleur d'oranger.", price: 55, alt: 'Seffa en dôme, cannelle et amandes' },
+];
+const formKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
+---
+<Base>
+  <a href="#carte" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-chaux focus:px-4 focus:py-2">Aller à la carte</a>
+
+  <!-- Header -->
+  <header class="absolute inset-x-0 top-0 z-30">
+    <div class="wrap flex items-center justify-between py-5 md:py-7">
+      <a href="#" class="font-serif text-[1.65rem] leading-none font-medium tracking-tight" aria-label="Dar Zitoun, accueil">Dar Zitoun</a>
+      <nav aria-label="Navigation principale" class="flex items-center gap-7 text-[0.95rem]">
+        <a class="link hidden md:inline" href="#maison">La maison</a>
+        <a class="link hidden md:inline" href="#carte">La carte</a>
+        <a class="link hidden md:inline" href="#galerie">Galerie</a>
+        <a class="btn !py-2.5 !px-4 text-[0.95rem]" href="#reserver">Réserver</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="relative overflow-hidden" aria-labelledby="hero-title">
+      <!-- the painted lower wall, like the Oudayas -->
+      <div class="wall absolute inset-x-0 bottom-0 h-[22svh] md:h-[24svh]" aria-hidden="true"></div>
+
+      <div class="wrap relative grid md:grid-cols-12 gap-x-8 pt-28 md:pt-0 md:min-h-[min(100svh,960px)]">
+        <div class="md:col-span-6 lg:col-span-6 flex flex-col justify-center md:pb-[calc(24svh+3.5rem)] md:pt-32 relative z-10">
+          <p class="kicker mb-6">Cuisine de maison, médina de Rabat</p>
+          <h1 id="hero-title" class="display h-hero md:-mr-[18%]">Ici, on prend le temps de bien faire.</h1>
+          <p class="mt-8 text-[1.1rem] max-w-[38ch] opacity-90">Le pain sort du four chaque matin, le tajine mijote depuis midi, et l'olivier de la cour fait de l'ombre à votre table.</p>
+          <div class="mt-9 flex flex-wrap items-center gap-6">
+            <a class="btn" href="#reserver">Réserver une table</a>
+            <a class="link font-medium" href="#carte">Voir la carte</a>
+          </div>
+        </div>
+
+        <div class="md:col-span-6 lg:col-span-5 lg:col-start-7 relative mt-14 md:mt-0 h-[62svh] md:h-auto">
+          <div class="relative h-full md:absolute md:inset-x-0 md:top-24 md:bottom-[9%]">
+            <div class="arch reveal h-full w-full">
+              <Img name="hero.jpg" alt="Cour d'un riad avec un olivier et une table dressée" loading="eager" />
+            </div>
+            <span class="arch-line hidden md:block" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <p class="hidden lg:block absolute right-[calc(var(--gutter)+2.5rem)] top-1/2 -translate-y-1/2 font-arabic text-[1.6rem] text-laiton [writing-mode:vertical-rl]" lang="ar" aria-hidden="true">دار زيتون</p>
+      </div>
+      
+    </section>
+
+    <!-- La maison -->
+    <section id="maison" class="section" aria-labelledby="maison-title">
+      <div class="wrap grid md:grid-cols-12 gap-x-8 gap-y-14 items-start">
+        <div class="md:col-span-5 relative order-2 md:order-1">
+          <div class="arch reveal aspect-[4/5] w-full max-w-[460px]">
+            <Img name="maison.jpg" alt="Mains qui pétrissent un pain rond marocain sur une planche en bois" />
+          </div>
+        </div>
+        <div class="md:col-span-6 md:col-start-7 order-1 md:order-2 md:pt-10">
+          <h2 id="maison-title" class="display h-section max-w-[14ch]">Une maison, un olivier, un four en terre.</h2>
+          <div class="prose-body mt-10 text-[1.08rem]">
+            <p>Dar Zitoun, c'est « la maison de l'olivier ». L'arbre était là avant nous, au milieu de la cour, et on a construit le reste autour de lui.</p>
+            <p>En cuisine, pas de raccourcis. Les recettes viennent de nos grands-mères, de Fès et de Salé, notées sur des cahiers qu'on garde encore. On cuisine peu de plats, mais on les cuisine comme à la maison.</p>
+          </div>
+          <figure class="mt-14 pl-6 md:pl-8 border-l border-laiton/60 max-w-[30ch]">
+            <blockquote class="font-serif italic text-[clamp(1.7rem,3vw,2.35rem)] leading-[1.15]">« Le secret de la rfissa ? Trois heures, et ne jamais la quitter des yeux. »</blockquote>
+            <figcaption class="mt-4 text-[0.95rem] opacity-75">Lalla Fatna, en cuisine</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- La carte -->
+    <section id="carte" class="section pt-0" aria-labelledby="carte-title">
+      <div class="wrap grid md:grid-cols-12 gap-x-8">
+        <div class="md:col-span-4">
+          <div class="md:sticky md:top-12">
+            <h2 id="carte-title" class="display h-section">La carte</h2>
+            <p class="mt-6 max-w-[34ch] opacity-90">Une carte courte qui change avec le marché. Le couscous, c'est le vendredi, comme il se doit.</p>
+          </div>
+        </div>
+        <ul class="md:col-span-8 mt-12 md:mt-2" data-menu>
+          {dishes.map((d) => (
+            <li class="dish py-6 md:py-8 grid grid-cols-[64px_1fr] md:grid-cols-1 gap-x-5 items-start" data-preview={d.img}>
+              <div class="arch aspect-[4/5] w-16 md:hidden"><Img name={d.img} alt={d.alt} /></div>
+              <div>
+                <div class="flex items-baseline gap-3">
+                  <h3 class="dish-name">{d.name}</h3>
+                  <span class="leader" aria-hidden="true"></span>
+                  <span class="price">{d.price} MAD</span>
+                </div>
+                <p class="mt-2 opacity-80 max-w-[52ch]">{d.desc}{d.note && <span class="text-laiton"> {d.note}.</span>}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <p class="md:col-span-8 md:col-start-5 mt-8 font-serif italic text-[1.45rem] leading-snug">Le thé à la menthe est offert. Il est servi de haut, évidemment.</p>
+      </div>
+
+      <div class="cursor-preview arch" aria-hidden="true" data-cursor>
+        {dishes.map((d) => (
+          <div class="absolute inset-0 opacity-0 transition-opacity duration-200" data-cursor-img={d.img}><Img name={d.img} alt="" /></div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Le four -->
+    <section class="relative h-[70svh] min-h-[420px] max-h-[760px] overflow-hidden" aria-label="Le four à pain">
+      <div class="reveal-flat absolute inset-0">
+        <Img name="four.jpg" alt="Pains ronds dans un four traditionnel en terre" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1B222B]/70 via-[#1B222B]/15 to-transparent"></div>
+      </div>
+      <div class="wrap relative h-full flex items-end pb-12 md:pb-16">
+        <p class="display text-chaux text-[clamp(2.2rem,5vw,4.4rem)] max-w-[18ch]">Chaque matin à six heures, le four se réveille avant nous.</p>
+      </div>
+    </section>
+
+    <!-- Galerie -->
+    <section id="galerie" class="section" aria-labelledby="galerie-title">
+      <div class="wrap">
+        <h2 id="galerie-title" class="display h-section max-w-[12ch]">Entre la cour et la cuisine.</h2>
+        <div class="mt-14 grid grid-cols-12 gap-4 md:gap-8">
+          <div class="col-span-12 md:col-span-6 md:row-span-2">
+            <div class="arch reveal aspect-[3/4] w-full"><Img name="galerie-1.jpg" alt="Porte en arc bordée de zellige dans la lumière du matin" /></div>
+          </div>
+          <div class="col-span-7 md:col-span-4 md:col-start-8 md:mt-24">
+            <div class="aspect-[4/5] w-full overflow-hidden rounded-[2px]"><Img name="galerie-2.jpg" alt="Thé à la menthe versé de haut dans un verre" /></div>
+          </div>
+          <div class="col-span-5 md:col-span-5 md:col-start-7 self-end">
+            <div class="aspect-[4/3] w-full overflow-hidden rounded-[2px]"><Img name="galerie-3.jpg" alt="Bols d'épices et d'olives sur une table de marché" /></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Avis -->
+    <section class="section pt-0" aria-labelledby="avis-title">
+      <div class="wrap">
+        <h2 id="avis-title" class="text-[0.95rem] text-laiton font-medium">Avis d'exemple, concept de portfolio</h2>
+        <div class="mt-10 grid md:grid-cols-2 gap-12 md:gap-16">
+          <figure>
+            <blockquote class="font-serif text-[clamp(1.8rem,3.2vw,2.6rem)] leading-[1.12]">« On est venus pour la pastilla, on est restés pour le thé. Et on est revenus le vendredi. »</blockquote>
+            <figcaption class="mt-5 opacity-70 text-[0.95rem]">Exemple d'avis</figcaption>
+          </figure>
+          <figure class="md:mt-24">
+            <blockquote class="font-serif text-[clamp(1.8rem,3.2vw,2.6rem)] leading-[1.12]">« Le genre d'endroit où personne ne vous presse de partir. »</blockquote>
+            <figcaption class="mt-5 opacity-70 text-[0.95rem]">Exemple d'avis</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Réserver -->
+    <section id="reserver" class="bg-olive text-chaux section" aria-labelledby="reserver-title">
+      <div class="wrap grid md:grid-cols-12 gap-x-8 gap-y-16">
+        <div class="md:col-span-5">
+          <h2 id="reserver-title" class="display h-section max-w-[11ch]">Gardez-nous une place à l'ombre.</h2>
+          <dl class="mt-12 space-y-7">
+            <div>
+              <dt class="text-[0.9rem] opacity-70">Horaires</dt>
+              <dd class="mt-1.5">Mardi – dimanche : 12h30 – 15h00 et 19h30 – 23h00<br />Lundi : fermé (le four se repose aussi)</dd>
+            </div>
+            <div>
+              <dt class="text-[0.9rem] opacity-70">Adresse</dt>
+              <dd class="mt-1.5">Médina de Rabat (adresse fictive)<br /><a class="link" href="https://www.google.com/maps/search/?api=1&query=M%C3%A9dina+de+Rabat" target="_blank" rel="noopener">Ouvrir dans Google Maps</a></dd>
+            </div>
+            <div>
+              <dt class="text-[0.9rem] opacity-70">Téléphone</dt>
+              <dd class="mt-1.5"><a class="link" href="tel:+212537000000">+212 5 37 00 00 00</a></dd>
+            </div>
+            <div>
+              <dt class="text-[0.9rem] opacity-70">Instagram</dt>
+              <dd class="mt-1.5"><a class="link" href="https://www.instagram.com/" target="_blank" rel="noopener">@darzitoun</a></dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="md:col-span-6 md:col-start-7">
+          <form class="grid grid-cols-2 gap-x-8 gap-y-7" data-form data-key={formKey} novalidate>
+            <input type="hidden" name="subject" value="Nouvelle demande de réservation — Dar Zitoun" />
+            <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+            <div class="field col-span-2 sm:col-span-1">
+              <label for="f-nom">Nom</label>
+              <input id="f-nom" name="nom" type="text" autocomplete="name" required />
+            </div>
+            <div class="field col-span-2 sm:col-span-1">
+              <label for="f-tel">Téléphone</label>
+              <input id="f-tel" name="telephone" type="tel" autocomplete="tel" required />
+            </div>
+            <div class="field col-span-2 sm:col-span-1">
+              <label for="f-date">Date</label>
+              <input id="f-date" name="date" type="date" required />
+            </div>
+            <div class="field col-span-1">
+              <label for="f-heure">Heure</label>
+              <select id="f-heure" name="heure" required>
+                <option value="">Choisir</option>
+                <option>12h30</option><option>13h00</option><option>13h30</option><option>14h00</option>
+                <option>19h30</option><option>20h00</option><option>20h30</option><option>21h00</option><option>21h30</option>
+              </select>
+            </div>
+            <div class="field col-span-1">
+              <label for="f-pers">Nombre de personnes</label>
+              <input id="f-pers" name="personnes" type="number" min="1" max="20" value="2" required />
+            </div>
+            <div class="field col-span-2">
+              <label for="f-msg">Un mot pour nous ? (allergie, anniversaire, table dans la cour…)</label>
+              <textarea id="f-msg" name="message" rows="3"></textarea>
+            </div>
+            <div class="col-span-2 flex flex-wrap items-center gap-6 mt-2">
+              <button type="submit" class="btn btn-light">Envoyer la demande</button>
+              <p class="text-[0.95rem]" role="status" aria-live="polite" data-status></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-olive-deep text-chaux">
+    <div class="wrap py-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+      <div>
+        <p class="font-serif text-[1.9rem] leading-none">Dar Zitoun <span class="font-arabic text-[1.5rem] text-[#C9AE78] ml-2" lang="ar">دار زيتون</span></p>
+        <p class="mt-3 opacity-80 text-[0.95rem]">Cuisine marocaine de maison, Rabat</p>
+      </div>
+      <p class="opacity-70 text-[0.9rem]">Concept de portfolio, restaurant fictif.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Arch reveal, once per element
+    const els = document.querySelectorAll('.reveal, .reveal-flat');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      }, { rootMargin: '0px 0px -10% 0px' });
+      els.forEach((el) => io.observe(el));
+    } else {
+      els.forEach((el) => el.classList.add('is-in'));
+    }
+
+    // Menu: photo follows the cursor (desktop, motion allowed)
+    const menu = document.querySelector('[data-menu]');
+    const cursor = document.querySelector<HTMLElement>('[data-cursor]');
+    const fine = matchMedia('(hover: hover) and (min-width: 901px)').matches;
+    const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (menu && cursor && fine && !calm) {
+      let x = 0, y = 0, cx = 0, cy = 0, raf = 0;
+      const tick = () => {
+        cx += (x - cx) * 0.18; cy += (y - cy) * 0.18;
+        cursor.style.left = `${cx + 150}px`; cursor.style.top = `${cy}px`;
+        raf = requestAnimationFrame(tick);
+      };
+      menu.querySelectorAll<HTMLElement>('[data-preview]').forEach((row) => {
+        row.addEventListener('mouseenter', () => {
+          cursor.querySelectorAll<HTMLElement>('[data-cursor-img]').forEach((img) => {
+            img.style.opacity = img.dataset.cursorImg === row.dataset.preview ? '1' : '0';
+          });
+          cursor.classList.add('on');
+        });
+      });
+      menu.addEventListener('mouseleave', () => cursor.classList.remove('on'));
+      window.addEventListener('mousemove', (e) => { x = e.clientX; y = e.clientY; if (!raf) { cx = x; cy = y; tick(); } });
+    }
+
+    // Reservation form (Web3Forms)
+    const form = document.querySelector<HTMLFormElement>('[data-form]');
+    const status = document.querySelector<HTMLElement>('[data-status]');
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!status) return;
+      if (!form.checkValidity()) {
+        const first = form.querySelector<HTMLElement>(':invalid');
+        first?.focus();
+        status.textContent = 'Il manque une information : nom, téléphone, date, heure et nombre de personnes.';
+        return;
+      }
+      const key = form.dataset.key;
+      if (!key) {
+        status.textContent = "Formulaire en démonstration : ajoutez une clé Web3Forms pour recevoir les demandes.";
+        return;
+      }
+      const btn = form.querySelector('button');
+      btn?.setAttribute('disabled', '');
+      status.textContent = 'Envoi en cours…';
+      const data = Object.fromEntries(new FormData(form));
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ access_key: key, ...data }),
+        });
+        const json = await res.json();
+        if (json.success) {
+          form.reset();
+          status.textContent = 'Merci ! On vous rappelle dans la journée pour confirmer votre table.';
+        } else {
+          status.textContent = "La demande n'est pas partie. Réessayez, ou appelez-nous au +212 5 37 00 00 00.";
+        }
+      } catch {
+        status.textContent = "La demande n'est pas partie. Vérifiez votre connexion, ou appelez-nous.";
+      } finally {
+        btn?.removeAttribute('disabled');
+      }
+    });
+  </script>
+</Base>

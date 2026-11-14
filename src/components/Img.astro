@@ -1,0 +1,18 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+interface Props {
+  name: string;
+  alt: string;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+}
+const { name, alt, class: cls = '', loading = 'lazy' } = Astro.props;
+const exists = fs.existsSync(path.join(process.cwd(), 'public', 'images', name));
+---
+{exists ? (
+  <img src={`/images/${name}`} alt={alt} class={`img-fill ${cls}`} loading={loading} decoding="async" />
+) : (
+  <div class={`ph w-full h-full ${cls}`} role="img" aria-label={alt}><span>{name}</span></div>
+)}
